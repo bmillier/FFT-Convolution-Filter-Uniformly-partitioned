@@ -18,7 +18,7 @@ Possible Uses:
  code versions of this function. Frank has provided both T4 and a T3.6 version which works with smaller number of taps. 
  
  Due to the T4 MCU's partitioning of the SRAM memory into two 512 Kb blocks- DTCM and OCRAM,
- my code must place one of he large arrays into OCRAM (using the DMAMEM directive) and 
+ my code must place one of the large arrays into OCRAM (using the DMAMEM directive) and 
  the other into DTCM (no compiler directive needed for this). 
  I have not been able to use the DMAMEM directive in the class library code- it throws an error. Therefore I place one 
  large array, FFT_out,  in DMAMEM as part of the main program code, and pass convolutionUP.begin a pointer to that array. 
