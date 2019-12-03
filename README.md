@@ -53,7 +53,7 @@ Possible Uses:
   Read through the example program to see how the library object is used.
   Although the object processes a stereo signal, it can be used for mono signals equally well. The nature of the
   complex-FFTCMSIS routines used means that processing a stereo signal is no slower than a routine written 
-  for signals would be. 
+  for a mono signal would be. 
   
    The execution time of this convolution filter is a bit less than 1000 us. The overhead in collecting the
    audio data in 128-sample blocks and sending it out in 128-sample blocks adds 5.8 ms
