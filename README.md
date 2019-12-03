@@ -20,19 +20,18 @@ Possible Uses:1) FIR filters with a high number of taps (18000 max)
  Frank DD4WH's version is a completely in-line program, and he is able to split up all of the arrays evenly between the DTCM 
  and OCRAM segments. Therefore his program can handle somewhat larger impulse response files than mine.
     
-    To use this library, add the filter_convolution.h and .cpp files to the folder containing all the other audio
-    library files:
+ To use this library, add the filter_convolution.h and .cpp files to the folder containing all the other audio
+ library files:
     
-    c:\your arduino program folder\hardware\teensy\avr\libraries\Audio
+ c:\your arduino program folder\hardware\teensy\avr\libraries\Audio
     
-    Edit the Audio.h file to include the following line:
-    #include "filter_convolutionUP.h"
+ Edit the Audio.h file to include the following line:
+   #include "filter_convolutionUP.h"
     
-    Make sure you are using Arduino 1.8.9 (or newer) and the proper Teensyduino version to work with your
-    Arduino version
-    I tested it using Arduino 1.8.9/Teensyduino 1.47
+ Make sure you are using Arduino 1.8.9 (or newer) and the proper Teensyduino version to work with your
+ Arduino version. I tested it using Arduino 1.8.9/Teensyduino 1.47
     
-      The example program is a version of Frank's example program modified to work with my library. This demo
+    The example program is a version of Frank's example program modified to work with my library. This demo
   program is specifically written to work with a PJRC Audio Adapter board. If you wish to mount this board directly
   onto the T4 module, you must use the REV D Audio Adapter, as it has pins to match the T4 pinout. I am using 
   the REV C board as I am physically wiring it up to the T4 module and can wire up the appropriate pins.
