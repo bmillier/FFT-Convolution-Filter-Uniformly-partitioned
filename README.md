@@ -65,7 +65,26 @@ Possible Uses:
    and myself, at:
    https://forum.pjrc.com/threads/57267-Fast-Convolution-Filtering-with-Teensy-4-0-and-audio-board
    
-   
+   The object can not only be used with recorded guitar cabinet impulses, but also with FIR filter coefficients. The object handles REAL impulse response coefficients, not COMPLEX coefficients. In order to be able to use the object with the smallest possible latency (defined by the partitionsize variable, which is the size of the block that the impulse response is partitioned to), it is mandatory to use impulse responses with minimal phase (minimal delay). Recorded impulse responses should be treated with a deconvolver software program.
+
+For FIR coefficients, you should calculate minimum phase coefficients directly, or calculate linear phase coefficients and transform them to minimal phase using appropriate algorithms. If you use linear phase coefficients for the FIR filter, the object will work, but it will exhibit the standard latency of (N+1)/2 samples. Thus the whole effort of uniformly partitioned convolution is not necessary ;-).
+
+You can use MATLAB to calculate minimal phase FIR coefficients, however using the standard MATLAB tools, it is only possible to calculate equiripple lowpass FIR filter coeffs and it does take some time.
+
+Example how to use MATLAB to calculate real minimal phase FIR lowpass filter coefficients:
+
+    Use the "FilterBuilder" in MATLAB
+    choose lowpass
+    Order mode "Specify" --> specify number of taps/filter order
+    Filter type: "Single-rate"
+    Frequency constraints: "Cutoff 6dB freq", Frequency units: "Hz", enter sample rate and cutoff frequency
+    Magnitude constraints: "passband ripple and stopband attenuation" --> enter passband ripple and stopband attenuation
+    Design method: "equiripple", design options: "minimum phase"
+    Direct Form
+    Done!
+    !!! it can take up to 30 minutes on a decent Windows laptop until the calculations are performed!
+    copy the coeffs and put them into a file or hardcode them in Arduino IDE to insert them into a Teensy script
+
    
   
   
