@@ -40,11 +40,11 @@
 //#define IR1  // 512 taps // MG impulse response from bmillier github @44.1ksps
 //#define IR2  // 4096 taps // impulse response @44.1ksps
 //#define IR3  // 7552 taps // impulse response @44.1ksps
-//#define IR4    // 17920 taps // impulse response 400ms @44.1ksps
+#define IR4    // 17920 taps // impulse response 400ms @44.1ksps
 //#define IR5    // 21632 taps // impulse response 490ms @44.1ksps (truncated to 18000 taps)
 //#define IR6 // 5760 taps, 
-//#define IR7 // 22016 taps (truncated to 18000)
-#define IR8 // 25552 taps, too much ! (truncated to 18000)
+//define IR7 // 22016 taps (truncated to 18000)
+//#define IR8 // 25552 taps, too much ! (truncated to 18000)
 // 18000 taps is MAXIMUM --> about 0.4 seconds
 //#define LPMINPHASE512 // 512 taps minimum phase 2.7kHz lowpass filter
 //#define LPMINPHASE1024 // 1024 taps minimum phase 2.7kHz lowpass filter
@@ -104,6 +104,7 @@ const double PROGMEM SAMPLE_RATE = 44100;
 // to this 2.9 ms figure, you have to add in latency involved in collecting the audio data into a 128 sample block, as well as in sending it out again in a block
 
 #define partitionsize 128
+#define BUFFER_SIZE 128
 
 #define DEBUG
 #define FOURPI  (2.0 * TWO_PI)
@@ -205,7 +206,12 @@ void setI2SFreq(int freq) {
   CCM_CS1CDR = (CCM_CS1CDR & ~(CCM_CS1CDR_SAI1_CLK_PRED_MASK | CCM_CS1CDR_SAI1_CLK_PODF_MASK))
        | CCM_CS1CDR_SAI1_CLK_PRED(n1-1) // &0x07
        | CCM_CS1CDR_SAI1_CLK_PODF(n2-1); // &0x3f 
-//Serial.printf("SetI2SFreq(%d)\n",freq);
+  Serial.println(n1);
+  Serial.println(n2);
+  Serial.println(c0);
+  Serial.println(c1);
+  Serial.println(c2);
+
 }
 
 
